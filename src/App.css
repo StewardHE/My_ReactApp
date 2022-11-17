@@ -27,7 +27,7 @@
 .App-link {
   color: #61dafb;
 }
-
+/* rotation of the reactLogo */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
