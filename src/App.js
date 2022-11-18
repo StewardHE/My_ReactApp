@@ -1,14 +1,31 @@
 import './App.css';
+import { useState } from 'react';
 
+//
 function App() {
+  const [emotion, setEmotion] = useState("(Choose one)");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Hello From reactJS
-        </p>
+
+        <h1>
+          The current state of the app is {emotion}
+        </h1>
         
-      </header>
+        <button onClick={() => setEmotion("Sad")  }>
+          Sad
+        </button>
+        <button onClick={() => setEmotion("Happy") }>
+          Happy
+        </button> 
+        <button onClick={() => setEmotion("Excited") }>
+          Excited
+        </button>
+        <button onClick={() => setEmotion("Off") }>
+          Off
+          </button>
+
+
     </div>
   );
 }
