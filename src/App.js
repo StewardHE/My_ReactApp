@@ -1,47 +1,24 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useReducer } from 'react';
 
 
 //
 function App() {
-  const [emotion, setEmotion] = useState("(Choose one)"); // value of emotion is "choose one"
-  const [secondary, setSecondary] =
-    useState("(Choose One Option)");
-
-  // set the current emotion on the console using useEffect
-  useEffect(() => {
-    console.log(`It's ${emotion} right now`);
-  }, [emotion]);
-
-  useEffect(() => {
-    console.log(`It's ${secondary} around here!`);
-  }, [secondary]);
-
-  // Change the current state of the app using buttons 
+  const [checked, setChecked] = useReducer(
+    (checked) => !checked,
+    false
+    );
   return (
+    // check box
     <div className="App">
-      <hr/>
-        <h1>
-          The current state of the app is {emotion}
-        </h1>
-        
-        <button onClick={() => setEmotion("Sad")  }>
-          Sad
-        </button>
-        <button onClick={() => setEmotion("Happy") }>
-          Happy
-        </button> 
-        <button onClick={() => setEmotion("Excited") }>
-          Excited
-        </button>
-        <button onClick={() => setEmotion("Off") }>
-          Off
-          </button>
-       <hr/>
-          <h1>Current Secondary Emotion is {secondary}. </h1>
+      <input type="checkbox" 
+      value={checked} 
+      onChange={setChecked}
+      />
 
-        <button onClick={() => setSecondary("grateful")}>Grateful</button>
-        <hr/>
+      <label>
+        {checked ? "checked" : "not checked"}
+      </label>
     </div>
   );
 }
