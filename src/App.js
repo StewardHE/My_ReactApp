@@ -1,50 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
-// Custom Hook
-function useInput(initialValue) {
-  const [value, setValue] = useState(initialValue)
-  return [
-    {
-      value, 
-      onChange: (e) => setValue(e.target.value)
-    },
-    () => setValue(initialValue)
-  ];
-}
 
+// this component is to fetch data from the github Api
 function App() {
-  const [titleProps, resetTitle] = useInput("");
-  const [colorProps, resetColor] = useInput("#0000");
+  // Here we use useState
+  const [data, setData] = useState(null);
+  // this is for fetch the data from the api
+  useEffect(() => {
+    fetch(
+      `https://api.github.com/`
+      )
+      
+      .then((response => response.json()))
+      .then(setData);
+  }, []);
+  // if there are some data, Show it
+  if(data) 
+    return (
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    );
 
-
-  // submit
-  const submit = (e) => {
-  e.preventDefault(); // Avoid default behavior
-  // print the title with her color 
-  alert(`${titleProps.value}, ${colorProps.value}`);
-  // After clicking ADD
-  resetTitle("");
-  resetColor("");
-  };
-
-  return (
-    <form onSubmit={submit}>
-
-      <input
-        {...titleProps}
-     
-        type="text"
-        placeholder="color title..."
-      />
-
-      <input 
-      {...colorProps}
-      type="color" />
-
-      <button>ADD</button>
-    </form>
-  );
+  return <h1>Data</h1>
 }
 
 export default App;
