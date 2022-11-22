@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
+// Fetch data from Github User API
+function GithubUser({ followers_url, events_url }) {
+  return(
+    <div>
+      <h1>{ followers_url }</h1>
+      <p>{ events_url }</p>
+    </div>
+  );
+}
 
 // this component is to fetch data from the github Api
 function App() {
@@ -17,11 +26,17 @@ function App() {
   }, []);
   // if there are some data, Show it
   if(data) 
+  // shows the followers data in the API
     return (
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    );
-
-  return <h1>Data</h1>
+      <GithubUser 
+      // shows the followers on the API
+      followers_url={data.followers_url} 
+      // shows the events on the api
+      events_url={data.events_url}
+      />
+      
+    )
+  return <h1>Data</h1>;
 }
 
 export default App;
