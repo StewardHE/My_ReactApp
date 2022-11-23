@@ -1,5 +1,6 @@
-import './App.css';
-import { Link } from "react-router-dom"
+import "./App.css";
+import { Link, Outlet } from "react-router-dom";
+
 
 // Home component and page using reactRouter.
 function Home() {
@@ -24,12 +25,19 @@ export function About() {
         <Link to="/Contact">Contact</Link>
       </nav>
       <h1>About Us</h1>
+      <Outlet />
     </div>
-
   );
 }
 
-
+// 
+export function History() {
+  return (
+    <div>
+      <h1>Our History</h1>
+    </div>
+  );
+}
 
 
 
